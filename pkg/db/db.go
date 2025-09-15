@@ -7,7 +7,7 @@ import (
 	"os"
 
 	"github.com/joho/godotenv"
-	_ "github.com/mattn/go-sqlite3"
+	_ "modernc.org/sqlite"
 )
 
 var DB *sql.DB
@@ -47,7 +47,7 @@ func Init(dbFile string) error {
 		return fmt.Errorf("error checking database file: %v", err)
 	}
 
-	DB, err = sql.Open("sqlite3", dbFile)
+	DB, err = sql.Open("sqlite", dbFile)
 	if err != nil {
 		return fmt.Errorf("error opening database: %v", err)
 	}
