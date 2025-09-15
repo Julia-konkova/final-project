@@ -8,6 +8,7 @@ RUN go mod download
 
 COPY . .
 
+CGO_ENABLED=1
 RUN go build -o /app/todo-list && chmod +x /app/todo-list
 
 EXPOSE 7540
