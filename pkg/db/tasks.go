@@ -6,7 +6,7 @@ func Tasks(limit int) ([]*Task, error) {
 
 	var tasks []*Task
 
-	rows, err := DB.Query("SELECT * FROM scheduler ORDER BY date ASC LIMIT :limit", sql.Named("limit", limit))
+	rows, err := DB.Query("SELECT id, date, title, comment, repeat FROM scheduler ORDER BY date ASC LIMIT :limit", sql.Named("limit", limit))
 	if err != nil {
 		return nil, err
 	}

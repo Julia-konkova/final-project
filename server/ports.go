@@ -24,13 +24,9 @@ func GetValidatedPort() (string, error) {
 	}
 
 	// Валидация порта
-	port, err := strconv.Atoi(portStr)
+	_, err := strconv.Atoi(portStr)
 	if err != nil {
 		return "", fmt.Errorf("TODO_PORT must be a number, got: %s", portStr)
-	}
-
-	if port < 1 || port > 65535 {
-		return "", fmt.Errorf("TODO_PORT must be between 1 and 65535, got: %d", port)
 	}
 
 	return portStr, nil

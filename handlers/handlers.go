@@ -28,6 +28,8 @@ type TasksResp struct {
 	Tasks []*db.Task `json:"tasks"`
 }
 
+const Limit = 50
+
 func writeJSONResponse(w http.ResponseWriter, statusCode int, data interface{}) {
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(statusCode)
@@ -54,7 +56,7 @@ func (h *Handlers) ServeWebFiles(w http.ResponseWriter, r *http.Request) {
 }
 
 func (h *Handlers) TasksHandler(w http.ResponseWriter, r *http.Request) {
-	tasks, err := db.Tasks(50)
+	tasks, err := db.Tasks(Limit)
 	if err != nil {
 		log.Printf("task output error: %v", err)
 		writeErrorResponse(w, http.StatusInternalServerError, "Ошибка вывода списка задач")
